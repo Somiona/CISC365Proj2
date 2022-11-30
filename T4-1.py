@@ -1,9 +1,65 @@
 """
 Enter names and Stu# here!
+Name: Somion Tian
+Stu#: 20093560
+Name:
+Stu#:
+Name:
+Stu#:
 """
 
 """
 Enter your pseudo code here!
+- To jump to island i, we either go through i-1 or i-2, so the state transformation would be:
+f(0) = 0
+f(1) = cost(0)
+f(2) = min(f(1) + cost(1), f(0) + cost(0))
+f(i) = min{f(i-1)+cost(i-1), f(i-2)+cost(i-2) }
+So the pseudo code would be:
+
+FUNCTION island_hopping {
+    INPUT: (Cost: cost of leaving island i)
+    OUTPUT: The string containing hop path and cost
+
+    ASSERT Length(Cost) >= 1 // otherwise theres's only one way to jump.
+    Integer size = Length(Cost)
+
+    Set Choice := {One, Two}
+    List<Choice> minHop := [None repeated (size + 1) times]
+    minHop_1 <- One
+    List<Integer> minPath := [-1 repeated (size + 1) times]
+    minPath_{0, 1} <- [0, Cost[0]]
+
+    LOOP i ∈ [2, size] {
+        costFromTwo := minPath[i-2] + Cost[i-2]
+        costFromOne := minPath[i-1] + Cost[i-1]
+        IF costFromOne < costFromTwo {
+            minPath_i <- costFromOne
+            minHop_i <- One
+        } ELSE {
+            minPath_i <- costFromTwo
+            minHop_i <- Two
+        }
+    }
+
+    Integer j := size
+    String output := "Answer (" + String(minPath[j]) + ", '"
+    String hopPath := String(j)
+
+    REPEAT {
+        If minHop_j = Two {
+            j <- j - 2
+        } Else If minHop_j = One {
+            j <- j - 1
+        }
+
+        Append(hopPath, "-" + String(j))
+    } UNTIL j = 0
+
+    RETURN output + Reverse(hopPath) + "')"
+}
+
+This code loops through input only once so it must be O(n)
 """
 
 
@@ -11,9 +67,41 @@ def island_hopping(c):
     """
     Enter your code here!
     """
-    
-    return
-                    
+    size = len(c)
+    assert size > 1
+
+    minHop = [0 for _ in range(size + 1)]
+    minHop[1] = 1 # 1 denoting jump back 1, 2 denoting jump back 2
+    minPath = [-1 for _ in range(size + 1)]
+    minPath[0], minPath[1] = 0, c[0]
+
+    for i in range(2, size+1):
+        # Make the table
+        costFromTwo = minPath[i-2] + c[i-2]
+        costFromOne = minPath[i-1] + c[i-1]
+        if costFromOne < costFromTwo:
+            # Choose from lower cost path
+            minPath[i] = costFromOne
+            minHop[i] = 1
+        else:
+            minPath[i] = costFromTwo
+            minHop[i] = 2
+
+    # Notice that i = size now, so we does not need j.
+    output = f"Answer ({str(minPath[i])}, '"
+    path = str(size)
+
+    while i > 0:
+        # Traverse backward to build the hopping path
+        if minHop[i] == 2:
+            i -= 2
+        elif minHop[i] == 1:
+            i -= 1
+
+        path += f"-{i}"
+
+    return f"{output}{path[::-1]}')" # path[::-1] reverses the string.
+
 
 """
 Testing code
@@ -22,7 +110,7 @@ Testing code
 c = (2,15,32,3)
 print(c)
 print("Answer (20, '0-1-3-4')")
-print(island_hopping(c),"\n") 
+print(island_hopping(c),"\n")
 
 c = (10,10,40,33,15,1)
 print(c)
