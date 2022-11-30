@@ -40,8 +40,7 @@ FUNCTION island_hopping {
         }
     }
 
-    Integer j := size
-    String hopPath := j
+    String hopPath := size
 
     REPEAT {
         Trace minHop backward to decide jump 2 or 1 for each hop.
@@ -63,12 +62,14 @@ def island_hopping(c):
     assert size > 1
 
     minHop = [0 for _ in range(size + 1)]
-    minHop[1] = 1 # 1 denoting jump back 1, 2 denoting jump back 2
+    # 1 denoting jump back 1, 2 denoting jump back 2
+    minHop[1] = 1
+    # i-th place stores the min cost jumping to island# i
     minPath = [-1 for _ in range(size + 1)]
     minPath[0], minPath[1] = 0, c[0]
 
     for i in range(2, size+1):
-        # Make the table
+        # Make the table. In order to arrive island i, we need to hop from either island i-1 or island i-2
         costFromTwo = minPath[i-2] + c[i-2]
         costFromOne = minPath[i-1] + c[i-1]
         if costFromOne < costFromTwo:
@@ -76,10 +77,11 @@ def island_hopping(c):
             minPath[i] = costFromOne
             minHop[i] = 1
         else:
+            # For the case when i-1 and i-2 have the same cost, prefer the one with shorter path.
             minPath[i] = costFromTwo
             minHop[i] = 2
 
-    # Notice that i = size now, so we does not need j.
+    # Notice that i = size now, so we does not need another index variable
     path = str(size)
 
     while i > 0:
