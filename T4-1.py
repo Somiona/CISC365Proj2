@@ -34,29 +34,21 @@ FUNCTION island_hopping {
         costFromTwo := minPath[i-2] + Cost[i-2]
         costFromOne := minPath[i-1] + Cost[i-1]
         IF costFromOne < costFromTwo {
-            minPath_i <- costFromOne
-            minHop_i <- One
+            We decide to take one hop, update minPath_i and minHop_i with costFromOne
         } ELSE {
-            minPath_i <- costFromTwo
-            minHop_i <- Two
+            We decide to take two hops, update minPath_i and minHop_i with costFromTwo
         }
     }
 
     Integer j := size
-    String output := "Answer (" + String(minPath[j]) + ", '"
-    String hopPath := String(j)
+    String hopPath := j
 
     REPEAT {
-        If minHop_j = Two {
-            j <- j - 2
-        } Else If minHop_j = One {
-            j <- j - 1
-        }
+        Trace minHop backward to decide jump 2 or 1 for each hop.
+        Append island# after current hop to hopPath
+    } UNTIL We reach the first island
 
-        Append(hopPath, "-" + String(j))
-    } UNTIL j = 0
-
-    RETURN output + Reverse(hopPath) + "')"
+    RETURN (Last number in minPath List, Reverse(hopPath))
 }
 
 This code loops through input only once so it must be O(n)
@@ -88,7 +80,6 @@ def island_hopping(c):
             minHop[i] = 2
 
     # Notice that i = size now, so we does not need j.
-    output = f"Answer ({str(minPath[i])}, '"
     path = str(size)
 
     while i > 0:
@@ -100,7 +91,7 @@ def island_hopping(c):
 
         path += f"-{i}"
 
-    return f"{output}{path[::-1]}')" # path[::-1] reverses the string.
+    return (minPath[size], path[::-1])  # path[::-1] reverses the string.
 
 
 """
