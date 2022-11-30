@@ -19,13 +19,13 @@ initialize row for the 2d list
     set totalPaths at 0,i to 0,i-1 if there is no ghost at the first row
 
 initialize column for the 2d list
-    set totalPaths at j,0 to j-1,0 if ther is no ghost at the first column
+    set totalPaths at j,0 to j-1,0 if there is no ghost at the first column
 
 process 2d list
     if the index in question has no ghost
         sum the paths
 
-return total paths
+return total paths at (n-1, n-1)
 """
 
 
@@ -50,7 +50,7 @@ def pacman(ghost):
         if ghost[0][i] == 0:
             totalPaths[0][i] = totalPaths[0][i-1]
     
-    # column, set totalPaths at j,0 to j-1,0 if ther is no ghost at the first column
+    # column, set totalPaths at j,0 to j-1,0 if there is no ghost at the first column
     for j in range(1, len(ghost)):
         if ghost[j][0] == 0:
             totalPaths[j][0] = totalPaths[j-1][0]
