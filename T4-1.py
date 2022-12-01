@@ -2,12 +2,12 @@
 Enter names and Stu# here!
 Name: Somion Tian
 Stu#: 20093560
-Name:
-Stu#:
-Name:
-Stu#:
-Name:
-Stu#:
+Name: Yuchen Cai
+Stu#: 20147504
+Name: Yu Peng
+Stu#: 20147498
+Name: Yi Kuang
+Stu#: 20147041
 Name: Kyle Verma
 Stu#: 20155370
 """

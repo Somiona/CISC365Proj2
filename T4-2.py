@@ -3,6 +3,9 @@ Enter names and Stu# here!
 
 Kyle Verma, 20155370
 Somion Tian, 20093560
+Yuchen Cai, 20147504
+Yu Peng, 20147498
+Yi Kuang, 20147041
 """
 
 """
@@ -97,6 +100,17 @@ ghost=[[0,0,0,1],
 print("for input:", ghost)
 print("Answer: 7")
 print(pacman(ghost),"\n")
+
+# Complexity Explanation:
+# THe complexity of the program would be: O(n^2)
+# - Assignment of totalPaths -               O(1)
+# - if Statement -                           O(1)
+# - else Statement -                         O(1)
+# - For Loop & if Statement -                O(n)
+# - For Loop & if Statement -                O(n)
+# - For Loop in for loop & if Statement -    O(n^2)
+# - return totalPaths[-1][-1] -              O(1)
+# Therefore, the complexity of the program would be O(n^2).
 
 
 
