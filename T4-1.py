@@ -6,6 +6,10 @@ Name:
 Stu#:
 Name:
 Stu#:
+Name:
+Stu#:
+Name: Kyle Verma
+Stu#: 20155370
 """
 
 """
@@ -140,5 +144,5 @@ print(island_hopping(c),"\n")
 # - Assignment for minPath[0], minPath[1] -  O(1)
 # - For Loop & if-else Statement -           O(n)
 # - Aissgnment for path  -                   O(1)
-# - While Loop & if-else Statement -         O(n)     
+# - While Loop & if-else Statement -         O(n)
 # Therefore, the complexity of the program would be O(n).

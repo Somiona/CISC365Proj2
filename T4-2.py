@@ -2,6 +2,7 @@
 Enter names and Stu# here!
 
 Kyle Verma, 20155370
+Somion Tian, 20093560
 """
 
 """
@@ -9,7 +10,7 @@ Enter your pseudo code here!
 
 total paths = 2d list starting at 0. List will return total paths for speciied cherry location
 
-if at 0,0 there are no ghosts 
+if at 0,0 there are no ghosts
     set total paths at 0,0 to 1
 
 else
@@ -40,21 +41,21 @@ def pacman(ghost):
     # set totalPaths at 0,0 to 1 if there is a ghost
     if ghost[0][0] == 0:
         totalPaths[0][0] = 1
-    
+
     # otherwise set totalPaths at 0,0 to 0
     else:
         totalPaths[0][0] = 0
-    
+
     # row, set totalPaths at 0,i to 0,i-1 if there is no ghost at the first row
     for i in range(1, len(ghost)):
         if ghost[0][i] == 0:
             totalPaths[0][i] = totalPaths[0][i-1]
-    
+
     # column, set totalPaths at j,0 to j-1,0 if there is no ghost at the first column
     for j in range(1, len(ghost)):
         if ghost[j][0] == 0:
             totalPaths[j][0] = totalPaths[j-1][0]
-    
+
     # process the 2d list
     # first go through each row
     for i in range(1, len(ghost)):
@@ -63,13 +64,13 @@ def pacman(ghost):
             # if no ghost is blocking the corresponding location, return sum of the paths
             if ghost[i][j] == 0:
                 totalPaths[i][j] = totalPaths[i-1][j] + totalPaths[i][j-1]
-    
+
     # return location at (n-1, n-1), the location of the cherries
     return totalPaths[-1][-1]
 
-    
-    
-                    
+
+
+
 
 """
 Testing code
@@ -95,7 +96,7 @@ ghost=[[0,0,0,1],
        [0,0,0,0]]
 print("for input:", ghost)
 print("Answer: 7")
-print(pacman(ghost),"\n") 
+print(pacman(ghost),"\n")
 
 
 
