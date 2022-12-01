@@ -129,3 +129,16 @@ c = (5,3,17,6,2,16,1)
 print(c)
 print("Answer (17, '0-1-3-4-6-7')")
 print(island_hopping(c),"\n")
+
+# Complexity Explanation:
+# THe complexity of the program would be: O(n)
+# - Assignment of size -                     O(1)
+# - Assert function -                        O(1)
+# - Assignment for minHop -                  O(n)
+# - Assignment for minHop[1] -               O(1)
+# - Assignment for minPath -                 O(n)
+# - Assignment for minPath[0], minPath[1] -  O(1)
+# - For Loop & if-else Statement -           O(n)
+# - Aissgnment for path  -                   O(1)
+# - While Loop & if-else Statement -         O(n)     
+# Therefore, the complexity of the program would be O(n).
